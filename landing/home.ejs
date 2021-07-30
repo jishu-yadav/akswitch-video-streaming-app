@@ -1,0 +1,28 @@
+<!--EJS Syntax-->
+<%- include('../partials/header') -%>
+<div class="container">
+    <h1 style="text-align: center;">View Trending</h1>
+    <div class="row">
+        <% for(video of videos){%>
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <video height="240" controls>
+                          <source src="/<%= video?.filePath %> " type="video/mp4">
+                        </video>
+                        <div class="card-body">
+                          <h4 class="card-title"><%= video.title %> </h4>
+                          <h6 class="card-title">Created By: <%= video?.creator?.name %> </h6>
+                          <p class="card-text"><%= video.description %> </p>
+                          <!--Logic-->
+                          <form action="/video/<%= video._id %>/like" method="POST">
+                            <button type="submit" class="btn btn-outline-success">Like</button>
+                          </form>
+                          <!-- <a href="#" class="btn btn-outline-success">Like</a> -->
+                          <a href="#" class="btn btn-outline-warning">Unlike</a>
+                        </div>
+                      </div>
+                </div>
+        <%} %>
+    </div>
+</div>
+<%- include('../partials/footer') -%>
